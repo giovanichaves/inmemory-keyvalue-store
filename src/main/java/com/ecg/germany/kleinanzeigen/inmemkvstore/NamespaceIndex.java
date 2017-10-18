@@ -18,7 +18,7 @@ public class NamespaceIndex {
         List<String> keysList = new ArrayList<>();
 
          this.indexedKeys.forEach((key, val) -> {
-             if (val >= from && val <= to){
+             if (val >= from && val < to){
                  keysList.add(key);
              }
         });
