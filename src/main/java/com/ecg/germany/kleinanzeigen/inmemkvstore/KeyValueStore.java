@@ -17,8 +17,10 @@ public class KeyValueStore {
 
     public void put(String namespace, String key, Serializable value, Map<String,Long> indexesNamesForSearch) {
 
-        if (!this.namespaceExists(namespace)) {
-            this.store.put(namespace, new NamespaceStore());
+        synchronized (this) {
+            if (!this.namespaceExists(namespace)) {
+                this.store.put(namespace, new NamespaceStore());
+            }
         }
 
         this.store.get(namespace).put(key, value, indexesNamesForSearch);

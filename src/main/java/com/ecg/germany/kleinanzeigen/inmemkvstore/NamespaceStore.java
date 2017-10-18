@@ -51,8 +51,10 @@ public class NamespaceStore {
     }
 
     private void putIndexElement(String index, String key, Long val) {
-        if (!this.indexExists(index)) {
-            this.indexes.put(index, new NamespaceIndex());
+        synchronized (this) {
+            if (!this.indexExists(index)) {
+                this.indexes.put(index, new NamespaceIndex());
+            }
         }
 
         this.indexes.get(index).put(key, val);
