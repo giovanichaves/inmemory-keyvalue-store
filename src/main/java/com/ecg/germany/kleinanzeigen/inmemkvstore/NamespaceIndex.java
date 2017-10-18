@@ -1,12 +1,16 @@
 package com.ecg.germany.kleinanzeigen.inmemkvstore;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class NamespaceIndex {
     private Map<String, Long> indexedKeys;
 
     public NamespaceIndex() {
-        this.indexedKeys = new HashMap<>();
+        this.indexedKeys = new ConcurrentHashMap<>();
     }
 
     public void put(String key, Long value) {

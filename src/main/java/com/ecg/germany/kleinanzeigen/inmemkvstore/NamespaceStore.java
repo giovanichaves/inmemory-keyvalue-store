@@ -2,17 +2,17 @@ package com.ecg.germany.kleinanzeigen.inmemkvstore;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class NamespaceStore {
     private Map<String, Serializable> namespaceStore;
     private Map<String, NamespaceIndex> indexes;
 
     public NamespaceStore() {
-        this.namespaceStore = new HashMap<>();
-        this.indexes = new HashMap<>();
+        this.namespaceStore = new ConcurrentHashMap<>();
+        this.indexes = new ConcurrentHashMap<>();
     }
 
     public void put(String key, Serializable value, Map<String, Long> indexesNamesForSearch) {

@@ -1,14 +1,18 @@
 package com.ecg.germany.kleinanzeigen.inmemkvstore;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class KeyValueStore {
     private Map<String, NamespaceStore> store;
 
 
     public KeyValueStore() {
-        this.store = new HashMap<>();
+        this.store = new ConcurrentHashMap<>();
     }
 
     public void put(String namespace, String key, Serializable value, Map<String,Long> indexesNamesForSearch) {
