@@ -16,6 +16,10 @@ public class NamespaceStore {
     }
 
     public void put(String key, Serializable value, Map<String, Long> indexesNamesForSearch) {
+        if (this.keyExists(key)) {
+            this.removeIndexElement(key);
+        }
+
         this.namespaceStore.put(key, value);
 
         indexesNamesForSearch.forEach((index, val) -> this.putIndexElement(index, key, val));
@@ -36,6 +40,10 @@ public class NamespaceStore {
         }
 
         return this.indexes.get(indexName).find(from, to);
+    }
+
+    private boolean keyExists(String key) {
+        return this.namespaceStore.containsKey(key);
     }
 
     private boolean indexExists(String index) {
