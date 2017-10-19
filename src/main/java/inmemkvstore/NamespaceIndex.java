@@ -1,4 +1,4 @@
-package com.ecg.germany.kleinanzeigen.inmemkvstore;
+package inmemkvstore;
 
 
 import java.util.ArrayList;
