@@ -61,6 +61,16 @@ public class NamespaceStore {
     }
 
     private void removeIndexElement(String key) {
-        this.indexes.forEach((index, namespaceIndex) -> namespaceIndex.delete(key));
+        this.indexes.forEach((index, namespaceIndex) -> {
+            if (namespaceIndex.delete(key)) {
+                this.cleanIndex(index);
+            }
+        });
+    }
+
+    private void cleanIndex(String index) {
+        if (this.indexes.get(index).isEmpty()) {
+            this.indexes.remove(index);
+        }
     }
 }

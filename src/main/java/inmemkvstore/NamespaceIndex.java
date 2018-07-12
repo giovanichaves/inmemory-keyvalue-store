@@ -30,11 +30,12 @@ public class NamespaceIndex {
          return keysList;
     }
 
-    public void delete(String key) {
-
-        this.indexedKeys.remove(key);
+    public boolean delete(String key) {
+        return this.indexedKeys.remove(key) != null;
     }
 
-
+    public boolean isEmpty() {
+        return this.indexedKeys.isEmpty();
+    }
 
 }
